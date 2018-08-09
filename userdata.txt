@@ -1,0 +1,18 @@
+#!/bin/bash
+
+GIT="https://github.com/GogineniManojkumar/wp-ansible.git"
+###### basic setup
+yum update -y
+yum install git -y
+pip install ansible
+
+#### apache and wordpress setup using ansible
+git clone $GIT
+cd wp-ansible/
+/usr/local/bin/ansible-playbook -i hosts wp-setup.yml --connection=local
+
+mv /var/www/html/wordpress/wp-config-sample.php /var/www/html/wordpress/wp-config.php
+sed -i "s/define('DB_NAME', .*/define('DB_NAME', '${db_name}');/" /var/www/html/wordpress/wp-config.php
+sed -i "s/define('DB_USER', .*/define('DB_USER', '${db_user}');/" /var/www/html/wordpress/wp-config.php
+sed -i "s/define('DB_PASSWORD', .*/define('DB_PASSWORD', '${db_password}');/" /var/www/html/wordpress/wp-config.php
+sed -i "s/define('DB_HOST', .*/define('DB_HOST', '${db_host}');/" /var/www/html/wordpress/wp-config.php
