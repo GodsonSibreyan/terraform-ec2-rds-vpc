@@ -24,10 +24,10 @@ above commands will provison the stack in aws. It takes 10-15 minutes to complet
 
 Note: We are doing the wordpress and server configuration using ansible playbook. We are running the ansible playbook using the userdata. (https://github.com/GogineniManojkumar/wp-ansible.git) 
 
-Step5: Once you are done with stack provision. please access the wordpress with Elb dna . (you can find the elb dns in terraform outputs)
+Step5: Once you are done with stack provision. please access the wordpress with ELB dns. (you can find the elb dns in terraform outputs)
 
 
-Step6: We are done with stack creation and wordpress setup. If you would like to terminate please run below command to terminate the stack which you created using terraform. 
+Step6: We are done with stack creation and setup. If you would like to terminate please run below command to terminate the stack which you created using terraform. 
 
 #terraform destroy    (To delete the resources)
 
