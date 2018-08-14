@@ -3,7 +3,7 @@
 ####################################
 
 resource "aws_launch_configuration" "wordpress-lc" {
-  name          = "wordpress_lc"
+  name_prefix    = "wordpress_lc"
   image_id      = "${data.aws_ami.basic_ami.id}"
   instance_type = "${var.instancetype}"
   iam_instance_profile = "${aws_iam_instance_profile.wp-ec2-profile.name}"
@@ -17,7 +17,7 @@ resource "aws_launch_configuration" "wordpress-lc" {
 #        Auto Scaling 
 ####################################
 resource "aws_autoscaling_group" "wp-asg" {
-  name                      = "wp-asg"
+  name_prefix               = "wp-asg"
   max_size                  = 1
   min_size                  = 1
   health_check_grace_period = 300
@@ -41,7 +41,7 @@ resource "aws_autoscaling_group" "wp-asg" {
 ####################################
 # Create a new load balancer
 resource "aws_elb" "wordpress-elb" {
-  name               = "wordpress-elb"
+  name_prefix          = "wordpress-elb"
  # availability_zones = [ "${data.aws_availability_zones.available.names[0]}" , "${data.aws_availability_zones.available.names[1]}" ]
   security_groups = ["${aws_security_group.wp-elb-sg.id}"]
   subnets = ["${aws_subnet.subnet3.id}", "${aws_subnet.subnet4.id}"]
