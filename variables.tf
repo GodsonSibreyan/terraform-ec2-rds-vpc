@@ -1,6 +1,9 @@
 variable "aws_access_key" {}
 variable "aws_secret_key" {}
 
+variable "aws_region" {
+    description = "Region"
+    }
 variable "main_vpc_cidr" {
     description = "CIDR of the VPC"
     default = "10.0.0.0/16"
